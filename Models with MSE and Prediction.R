@@ -59,17 +59,34 @@ mod3 <- glm(
 summary(mod3)
 
 
+mae <- function(actual, pred) {
+  mean(abs(actual - pred))
+}
+
+rmse <- function(actual, pred) {
+  sqrt(mean((actual - pred)^2))
+}
+
 # Model 1 predictions & MSE
 pred1 <- predict(mod1, newdata = test, type = "response")
 mse1  <- mse(test$transactions, pred1)
+mae1  <- mae(test$transactions, pred1)
+rmse1 <- rmse(test$transactions, pred1)
 
 # Model 2 predictions & MSE
 pred2 <- predict(mod2, newdata = test, type = "response")
 mse2  <- mse(test$transactions, pred2)
+mae2  <- mae(test$transactions, pred2)
+rmse2 <- rmse(test$transactions, pred2)
 
 # Model 3 predictions & MSE
 pred3 <- predict(mod3, newdata = test, type = "response")
 mse3  <- mse(test$transactions, pred3)
+mae3  <- mae(test$transactions, pred3)
+rmse3 <- rmse(test$transactions, pred3)
 
-mse1; mse2; mse3
+mse1; mae1; rmse1
+mse2; mae2; rmse2
+mse3; mae3; rmse3
+
 pred1; pred2; pred3
